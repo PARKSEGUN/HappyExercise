@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<div layout:fragment="content">
+    <div class="container mt-3">
+        <br>
+        <h5>로그인할 플랫폼을 클릭해주세요</h5>
+        <br>
+        <a href="/oauth2/authorization/kakao">
+            <img src="/image/kakao.png" class="rounded float-start" width="304" height="236">
+        </a>
+        <a href="/oauth2/authorization/google">
+            <img src="/image/google.png" class="rounded float-end"  width="304" height="236">
+        </a>
+        <div style="text-align: center">
+
+        <a href="/oauth2/authorization/naver" >
+            <img src="/image/naver.png" class="rounded"    width="304" height="236">
+        </a>
+        </div>
+
+    </div>
+</div>
+</html>

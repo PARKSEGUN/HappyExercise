@@ -1,0 +1,14 @@
+#원래는 gitignore로 관리해야하지만 깃허브에서 코드를 보고 다 시알기위해서 제거
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 887320296338-k54do6aqbimphneakj1an4d691r4qesg.apps.googleusercontent.com
+            client-secret: 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
+            #              원래는 이 scope를 별도로 등록하지않는다 기본값으로 설정해도 문제가 없기때문에 강제로 이렇게 설정한이유는 openid가
+#  scope에 있으면 Open Id Provider로 인식하기때문에 다른 서비스를 사용해서 로그인 API를 진행할때 각각 나눠서 OAuth2Service를 만들어줘야하기때문에 openId를 빼고 등록
+            scope:
+              - profile
+              - email
