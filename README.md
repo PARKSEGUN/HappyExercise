@@ -1,5 +1,5 @@
 # 내생각을 만들어보는 프로젝트
-## HappyExercise
+
 HappyExercise
 
 프레임워크
