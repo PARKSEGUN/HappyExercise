@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qkrtprjs.happyexercise.dto.MemberSaveRequestDto;
 import com.qkrtprjs.happyexercise.member.Member;
 import com.qkrtprjs.happyexercise.member.MemberRepository;
+import com.qkrtprjs.happyexercise.member.Role;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +17,12 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.xmlunit.util.Mapper;
+
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -70,5 +76,33 @@ public class MemberApiControllerTest {
         assertThat(member.getPlatform()).isEqualTo(platform);
         assertThat(member.getPicture()).isEqualTo(picture);
         assertThat(member.getEmail()).isEqualTo(email);
+    }
+
+    @Test
+    public void member_삭제() throws Exception {
+        //given
+        String name = "qkrtprjs";
+        String email = "qkrtprjs456";
+        String platform = "naver";
+        String picture = "picture";
+
+        Member member = Member.builder()
+                .role(Role.USER)
+                .platform(platform)
+                .name(name)
+                .email(email)
+                .picture(picture)
+                .build();
+        memberRepository.save(member);
+        Long id = 1L;
+        String url = "http://localhost:" + port + "/api/member/"+id;
+        System.out.println(url);
+        //when
+        mvc.perform(delete(url))
+                .andExpect(status().isOk())
+                .andDo(print());
+        //then
+        List<Member> all = memberRepository.findAll();
+        assertThat(all.size()).isEqualTo(0);
     }
 }

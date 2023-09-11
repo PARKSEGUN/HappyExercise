@@ -54,11 +54,33 @@ public class OAuthAttributes { //소셜 로그인 API를 사용했을때에 소�
     }
 
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
-        return new OAuthAttributes();
+        Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+
+        return OAuthAttributes.builder()
+                .attributes(attributes)
+                .email((String) response.get("email"))
+                .name((String) response.get("name"))
+                .picture((String) response.get("profile_image"))
+                .nameAttributeKey(userNameAttributeName)
+                .platform("NAVER")
+                .build();
     }
 
     private static OAuthAttributes ofKakao(String userNameAttributeName, Map<String, Object> attributes) {
-        return new OAuthAttributes();
+        // kakao는 kakao_account에 유저정보가 있다. (email)
+        Map<String, Object> kakao_account = (Map<String, Object>) attributes.get("kakao_account");
+        // kakao_account안에 또 profile이라는 JSON객체가 있다. (nickname, profile_image)
+        Map<String, Object> profile = (Map<String, Object>) kakao_account.get("profile");
+
+
+        return OAuthAttributes.builder()
+                .attributes(attributes)
+                .email((String) kakao_account.get("email"))
+                .name((String) profile.get("nickname"))
+                .picture((String) profile.get("profile_image_url"))
+                .nameAttributeKey(userNameAttributeName)
+                .platform("KAKAO")
+                .build();
     }
 
     public Member toEntity() {

@@ -5,6 +5,12 @@
       layout:decorate="~{layout/default_layout}">
 
 <div layout:fragment="content">
-
+    <div th:if="${loginMember!=null}">
+        <h1>로그인 정보 : </h1>
+    <div th:text="${loginMember.platform}"></div>
+    <div th:text="${loginMember.picture}"></div>
+    <div th:text="${loginMember.email}"></div>
+    <div th:text="${loginMember.name}"></div>
+    </div>
 </div>
 </html>
