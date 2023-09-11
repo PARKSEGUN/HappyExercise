@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<div layout:fragment="content">
+  <div class="container mt-3">
+    <button type="button" class="btn btn-danger" id="delete-btn">삭제</button>
+    <br>
+    <h2>내 정보</h2>
+      <div class="mb-3 mt-3">
+        <input type="hidden" th:value="${loginMember.id}" id="loginMemberId">
+        <label for="name">Name:</label>
+        <input th:value="${loginMember.name}" type="name" class="form-control" id="name" name="name" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="email">Email:</label>
+        <input th:value="${loginMember.email}" type="email" class="form-control" id="email" name="email" readonly>
+      </div>
+    <div class="mb-3">
+      <label for="platform">가입 플랫폼:</label>
+      <input th:value="${loginMember.platform}" type="platform" class="form-control" id="platform" name="platform" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="picture">사진:</label>
+      <br>
+      <img th:src="${loginMember.picture}" id="picture" class="form" width="304" height="236">
+    </div>
+  </div>
+
+</div>
+</html>

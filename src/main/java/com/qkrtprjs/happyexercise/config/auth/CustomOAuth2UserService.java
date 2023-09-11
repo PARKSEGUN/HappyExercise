@@ -39,7 +39,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 
         Member member = saveOrUpdate(attributes);
-        httpSession.setAttribute("user", new SessionMember(member));
+        httpSession.setAttribute("member", new SessionMember(member));
 
 
         return new DefaultOAuth2User(

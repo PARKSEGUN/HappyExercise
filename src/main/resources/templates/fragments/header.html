@@ -2,24 +2,31 @@
 <html lang="en">
 <div th:fragment="headerFragment"
      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <div class="p-5 bg-primary text-white text-center">
+    <div class="p-5 bg-warning text-white text-center">
         <h1>Welcome To HappyExercise</h1>
         <p>쉽고 편하게 운동해보자~</p>
     </div>
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+                <li  class="nav-item">
+                    <a class="nav-link active" href="/">홈</a>
+                </li>
+                <li  class="nav-item">
+                    <a class="nav-link" href="/auth/login">로그인</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav" sec:authorize="isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link active" href="/">홈</a>
                 </li>
-                <li sec:authorize="!isAuthenticated()" class="nav-item">
-                    <a class="nav-link" href="/auth/login">로그인</a>
+                <li  class="nav-item">
+                    <a class="nav-link" href="/member/detail">내정보</a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
+                <li  class="nav-item">
                     <a class="nav-link" href="/logout">로그아웃</a>
                 </li>
-
             </ul>
         </div>
     </nav>
