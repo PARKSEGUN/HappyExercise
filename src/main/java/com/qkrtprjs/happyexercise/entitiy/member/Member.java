@@ -1,16 +1,16 @@
-package com.qkrtprjs.happyexercise.member;
+package com.qkrtprjs.happyexercise.entitiy.member;
 
+import com.qkrtprjs.happyexercise.entitiy.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

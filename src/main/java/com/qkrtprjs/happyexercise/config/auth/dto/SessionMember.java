@@ -1,6 +1,6 @@
 package com.qkrtprjs.happyexercise.config.auth.dto;
 
-import com.qkrtprjs.happyexercise.member.Member;
+import com.qkrtprjs.happyexercise.entitiy.member.Member;
 import lombok.Getter;
 import lombok.ToString;
 

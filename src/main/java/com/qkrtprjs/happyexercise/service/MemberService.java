@@ -1,8 +1,8 @@
 package com.qkrtprjs.happyexercise.service;
 
 import com.qkrtprjs.happyexercise.dto.MemberSaveRequestDto;
-import com.qkrtprjs.happyexercise.member.Member;
-import com.qkrtprjs.happyexercise.member.MemberRepository;
+import com.qkrtprjs.happyexercise.entitiy.member.Member;
+import com.qkrtprjs.happyexercise.entitiy.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
