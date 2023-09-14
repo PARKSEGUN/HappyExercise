@@ -5,12 +5,10 @@
       layout:decorate="~{layout/default_layout}">
 
 <div layout:fragment="content">
-    <div th:if="${loginMember!=null}">
-        <h1>로그인 정보 : </h1>
-    <div th:text="${loginMember.platform}"></div>
-    <div th:text="${loginMember.picture}"></div>
-    <div th:text="${loginMember.email}"></div>
-    <div th:text="${loginMember.name}"></div>
-    </div>
+    <div class="container mt-3">
+        <button type="button" class="btn btn-primary" onclick="location.href='/save/item'" >상품 등록</button>
+    <script>
+
+    </script>
 </div>
 </html>

@@ -46,6 +46,9 @@ public class SecurityConfig {
                 .anyRequest()   //그밖에는
                 .authenticated()   //인증이 되어야된다
                 .and()
+                .formLogin()
+                .loginPage("/auth/login")
+                .and()
                 .logout()
                 .logoutSuccessUrl("/")
                 .and()

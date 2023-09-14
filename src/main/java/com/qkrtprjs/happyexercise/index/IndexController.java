@@ -15,7 +15,7 @@ import java.security.Principal;
 public class IndexController {
 
     @GetMapping("/")
-    private String index(Model model,@LoginMember SessionMember loginMember) {
+    private String index(Model model, @LoginMember SessionMember loginMember) {
         model.addAttribute("loginMember", loginMember);
         return "index";
     }
@@ -29,5 +29,10 @@ public class IndexController {
     private String detail(Model model, @LoginMember SessionMember loginMember) {
         model.addAttribute("loginMember", loginMember);
         return "member/detail";
+    }
+
+    @GetMapping("/save/item")
+    private String saveItem() {
+        return "item/save";
     }
 }
