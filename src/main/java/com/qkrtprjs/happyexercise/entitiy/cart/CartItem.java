@@ -2,6 +2,7 @@ package com.qkrtprjs.happyexercise.entitiy.cart;
 
 import com.qkrtprjs.happyexercise.entitiy.BaseTimeEntity;
 import com.qkrtprjs.happyexercise.entitiy.item.Item;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,11 @@ public class CartItem extends BaseTimeEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "itemId")
     private Item item;
+
+    @Builder
+    public CartItem(int count, Cart cart, Item item) {
+        this.count = count;
+        this.cart = cart;
+        this.item = item;
+    }
 }

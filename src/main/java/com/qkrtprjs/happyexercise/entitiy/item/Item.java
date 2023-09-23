@@ -1,5 +1,8 @@
 package com.qkrtprjs.happyexercise.entitiy.item;
 
+import com.qkrtprjs.happyexercise.dto.ItemResponseDto;
+import com.qkrtprjs.happyexercise.dto.ItemUpdateRequestDto;
+import com.qkrtprjs.happyexercise.dto.MemberResponseDto;
 import com.qkrtprjs.happyexercise.entitiy.BaseTimeEntity;
 import com.qkrtprjs.happyexercise.entitiy.member.Member;
 import lombok.Builder;
@@ -35,7 +38,8 @@ public class Item extends BaseTimeEntity {
     private Member member;
 
     @Builder
-    public Item(String detail, String name, int price, int stock, String status, String imgName, String imgPath, Member member) {
+    public Item(Long id,String detail, String name, int price, int stock, String status, String imgName, String imgPath, Member member) {
+        this.id = id;
         this.detail = detail;
         this.name = name;
         this.price = price;
@@ -44,5 +48,30 @@ public class Item extends BaseTimeEntity {
         this.imgName = imgName;
         this.imgPath = imgPath;
         this.member = member;
+    }
+
+
+    public Item update(ItemUpdateRequestDto itemUpdateRequestDto) {
+        this.name= itemUpdateRequestDto.getName();
+        this.detail= itemUpdateRequestDto.getDetail();
+        this.price= itemUpdateRequestDto.getPrice();
+        this.stock= itemUpdateRequestDto.getStock();
+        return this;
+    }
+
+    public static ItemResponseDto toDto(Item item) {
+        return ItemResponseDto.builder()
+                .id(item.getId())
+                .detail(item.getDetail())
+                .name(item.getName())
+                .price(item.getPrice())
+                .stock(item.getStock())
+                .status(item.getStatus())
+                .imgName(item.getImgName())
+                .imgPath(item.getImgPath())
+                .memberResponseDto(MemberResponseDto.toDto(item.getMember()))
+                .createdDate(item.getCreatedDate())
+                .updatedDate(item.getUpdatedDate())
+                .build();
     }
 }

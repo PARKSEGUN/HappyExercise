@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<div layout:fragment="content">
+
+    <div class="container mt-3">
+        <h2>주문하기</h2>
+        <div class="row">
+            <div class="col-sm-5">
+                <form action="/api/item" id="save-form" method="post" enctype="multipart/form-data">
+                    <input type="hidden" th:value="${item.id}" name="id" id="id">
+
+                    <div class="mb-3 mt-3">
+                        <label for="name">상품명:</label>
+                        <input type="text" class="form-control" id="name" th:value="${item.name}" name="name" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="detail">상품 설명:</label>
+                        <input type="text" class="form-control" id="detail" th:value="${item.detail}" name="detail"
+                               readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price">가격:</label>
+                        <input type="number" class="form-control" id="price" th:value="${item.price}" name="price"
+                               readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock">재고:</label>
+                        <input type="number" class="form-control" id="stock" th:value="${item.stock}" name="stock"
+                               readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status">상태:</label>
+                        <input type="text" class="form-control" id="status" th:value="${item.status}" name="status"
+                               readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="img">사진:</label>
+                        <br>
+                        <img th:src="${item.imgPath}" id="img" class="form" width="304" height="236">
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-5">
+                <h3>주문 정보</h3>
+                <div class="mb-3">
+                    <form action="/api/order" method="post"></form>
+                    <label for="order-count">개수:</label>
+                    <input type="number" class="form-control" id="order-count" placeholder="구매하실 개수를 입력해주세요" name="count">
+                    <br>
+                    <br>
+                    <h4 id="order-price">가격 : </h4>
+                    <br>
+                    <button type="button" id="order-save-btn" class="btn btn-info">주문하기</button>
+                    <button type="button" id="cart-save-btn" class="btn btn-success">장바구니 담기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        let itemForRequest = [[${item}]];
+
+    </script>
+</div>
+</html>

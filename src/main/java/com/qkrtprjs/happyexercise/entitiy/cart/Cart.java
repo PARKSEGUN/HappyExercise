@@ -2,6 +2,7 @@ package com.qkrtprjs.happyexercise.entitiy.cart;
 
 import com.qkrtprjs.happyexercise.entitiy.BaseTimeEntity;
 import com.qkrtprjs.happyexercise.entitiy.member.Member;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,4 +19,9 @@ public class Cart extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberId")
     private Member member;
+
+    @Builder
+    public Cart(Member member) {
+        this.member = member;
+    }
 }

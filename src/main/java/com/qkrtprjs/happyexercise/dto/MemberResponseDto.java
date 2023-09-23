@@ -1,54 +1,45 @@
-package com.qkrtprjs.happyexercise.entitiy.member;
+package com.qkrtprjs.happyexercise.dto;
 
-import com.qkrtprjs.happyexercise.dto.MemberResponseDto;
-import com.qkrtprjs.happyexercise.entitiy.BaseTimeEntity;
+import com.qkrtprjs.happyexercise.entitiy.member.Member;
+import com.qkrtprjs.happyexercise.entitiy.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
-@Entity
 @NoArgsConstructor
-public class Member extends BaseTimeEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class MemberResponseDto {
+
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false,unique = true)
     private String email;
 
-    @Column(nullable = false)
     private String platform;
 
     private String picture;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Role role;
 
+    private LocalDateTime createdDate;
+
+    private LocalDateTime updatedDate;
+
     @Builder
-    public Member(String name, String email, String platform, String picture, Role role) {
+    public MemberResponseDto(Long id, String name, String email, String platform, String picture, Role role, LocalDateTime createdDate, LocalDateTime updatedDate) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.platform = platform;
         this.picture = picture;
         this.role = role;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
-
-
-
-    public Member update(String name, String picture) {
-        this.name = name;
-        this.picture = picture;
-        return this;
-    }
-
     public static MemberResponseDto toDto(Member member) {
         return MemberResponseDto.builder()
                 .id(member.getId())
@@ -61,5 +52,4 @@ public class Member extends BaseTimeEntity {
                 .updatedDate(member.getUpdatedDate())
                 .build();
     }
-
 }

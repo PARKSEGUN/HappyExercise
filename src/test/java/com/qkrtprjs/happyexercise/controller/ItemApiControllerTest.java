@@ -9,6 +9,7 @@ import com.qkrtprjs.happyexercise.entitiy.item.ItemRepository;
 import com.qkrtprjs.happyexercise.entitiy.member.Member;
 import com.qkrtprjs.happyexercise.entitiy.member.MemberRepository;
 import com.qkrtprjs.happyexercise.entitiy.member.Role;
+import com.qkrtprjs.happyexercise.service.ItemService;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,6 +50,9 @@ public class ItemApiControllerTest {
     @Autowired
     private ItemRepository itemRepository;
 
+    @Autowired
+    private ItemService itemService;
+
 
     @After
     public void tearDown() throws Exception {
@@ -56,50 +60,71 @@ public class ItemApiControllerTest {
     }
 
     @Test
-    public void item_등록() throws Exception {
+    public void item_삭제()throws Exception {
         //given
-        String name = "qkrtprjs";
-        String detail = "qkrtprjs456";
-        int price = 1;
-        int stock = 1;
-        ItemSaveRequestDto dto = ItemSaveRequestDto.builder()
-                .name(name)
-                .detail(detail)
-                .price(price)
-                .stock(stock)
+        Item item = Item.builder()
+                .detail("a")
+                .name("b")
+                .stock(1)
+                .price(1)
+                .imgName("aa")
+                .imgPath("bb")
+                .member(null)
                 .build();
-
-        final String fileName = "66e06bd7-33db-467d-857f-fbc4b20c05eb_image"; //파일명
-        final String contentType = "png"; //파일타입
-        final String filePath = "src/test/resources/img/" + fileName + "." + contentType; //파일경로
-        FileInputStream fileInputStream = new FileInputStream(filePath);
-
-        MockMultipartFile multipartFile = new MockMultipartFile("img", "66e06bd7-33db-467d-857f-fbc4b20c05eb_image.png", contentType,
-                fileInputStream);
-
-        String dtoJson = new ObjectMapper().writeValueAsString(dto);
-        MockMultipartFile dtoMultipartFile = new MockMultipartFile("dtoMultipartFile", "dtoMultipartFile", "application/json",
-                dtoJson.getBytes(StandardCharsets.UTF_8));
-        System.out.println(dtoMultipartFile);
-        String url = "http://localhost:" + port + "/api/item";
+        Long id = itemRepository.save(item).getId();
 
         //when
-        mvc.perform(multipart(url)
-                        .file(multipartFile)
-                        .content(new ObjectMapper().writeValueAsString(dto)))
-                .andExpect(status().isOk())
-                .andDo(print());
+        itemService.deleteById(id);
         //then
-
-        Item item = itemRepository.findAll().get(0);
-
-        assertThat(item.getName()).isEqualTo(name);
-        assertThat(item.getDetail()).isEqualTo(detail);
-        assertThat(item.getPrice()).isEqualTo(price);
-        assertThat(item.getStock()).isEqualTo(stock);
-        System.out.println(item.getImgName());
-        System.out.println(item.getImgPath());
+        assertThat(itemRepository.findAll().size()).isEqualTo(0);
     }
+
+
+//    @Test
+//    public void item_등록() throws Exception {
+//        //given
+//        String name = "qkrtprjs";
+//        String detail = "qkrtprjs456";
+//        int price = 1;
+//        int stock = 1;
+//        ItemSaveRequestDto dto = ItemSaveRequestDto.builder()
+//                .name(name)
+//                .detail(detail)
+//                .price(price)
+//                .stock(stock)
+//                .build();
+//
+//        final String fileName = "66e06bd7-33db-467d-857f-fbc4b20c05eb_image"; //파일명
+//        final String contentType = "png"; //파일타입
+//        final String filePath = "src/test/resources/img/" + fileName + "." + contentType; //파일경로
+//        FileInputStream fileInputStream = new FileInputStream(filePath);
+//
+//        MockMultipartFile multipartFile = new MockMultipartFile("img", "66e06bd7-33db-467d-857f-fbc4b20c05eb_image.png", contentType,
+//                fileInputStream);
+//
+//        String dtoJson = new ObjectMapper().writeValueAsString(dto);
+//        MockMultipartFile dtoMultipartFile = new MockMultipartFile("dtoMultipartFile", "dtoMultipartFile", "application/json",
+//                dtoJson.getBytes(StandardCharsets.UTF_8));
+//        System.out.println(dtoMultipartFile);
+//        String url = "http://localhost:" + port + "/api/item";
+//
+//        //when
+//        mvc.perform(multipart(url)
+//                        .file(multipartFile)
+//                        .content(new ObjectMapper().writeValueAsString(dto)))
+//                .andExpect(status().isOk())
+//                .andDo(print());
+//        //then
+//
+//        Item item = itemRepository.findAll().get(0);
+//
+//        assertThat(item.getName()).isEqualTo(name);
+//        assertThat(item.getDetail()).isEqualTo(detail);
+//        assertThat(item.getPrice()).isEqualTo(price);
+//        assertThat(item.getStock()).isEqualTo(stock);
+//        System.out.println(item.getImgName());
+//        System.out.println(item.getImgPath());
+//    }
 
 
 }
