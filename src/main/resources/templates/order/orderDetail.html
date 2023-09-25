@@ -14,7 +14,7 @@
             <label for="id">주문번호:</label>
             <input type="text" class="form-control" id="id" th:value="${order.id}" name="id" readonly>
         </div>
-
+        <br>
         <table class="table">
             <thead>
             <tr>
@@ -35,6 +35,7 @@
             </th:block>
             </tbody>
         </table>
+        <br>
         <div class="mb-3">
             <label for="orderPrice">주문 금액:</label>
             <input type="text" class="form-control" id="orderPrice" th:value="${order.price}" name="orderPrice" readonly>

@@ -13,7 +13,7 @@
       <button type="button" class="btn btn-danger" id="delete-item-btn">삭제</button>
     </th:block>
     <th:block th:if="${loginMember.email!=item.memberResponseDto.email}">
-      <button type="button" class="btn btn-info" id="orderForm-item-btn" th:onclick="|location.href='@{|/orderForm/${item.id}|}'|">구매</button>
+      <button type="button" class="btn btn-info" id="orderForm-item-btn" th:onclick="|location.href='@{|/orderForm/${item.id}|}'|">구매 및 장바구니 추가</button>
     </th:block>
 
     <form action="/api/item" id="save-form" method="post" enctype="multipart/form-data">

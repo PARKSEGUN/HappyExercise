@@ -7,11 +7,10 @@ import com.qkrtprjs.happyexercise.entitiy.item.Item;
 import com.qkrtprjs.happyexercise.entitiy.item.ItemRepository;
 import com.qkrtprjs.happyexercise.entitiy.member.Member;
 import com.qkrtprjs.happyexercise.entitiy.member.MemberRepository;
+import com.qkrtprjs.happyexercise.service.CartItemService;
 import com.qkrtprjs.happyexercise.service.CartService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -19,6 +18,7 @@ public class CartApiController {
     private final CartService cartService;
     private final ItemRepository itemRepository;
     private final MemberRepository memberRepository;
+    private final CartItemService cartItemService;
 
     @PostMapping("/api/cart")
     private Long save(@RequestBody OrderSaveRequestDto orderSaveRequestDto, @LoginMember SessionMember loginMember) {
@@ -27,5 +27,11 @@ public class CartApiController {
         int count = orderSaveRequestDto.getCount();
 
         return cartService.save(item, count, member);
+    }
+
+    @DeleteMapping("/api/cartItem/{id}")
+    private Long delete(@PathVariable Long id) {
+        cartItemService.delete(id);
+        return id;
     }
 }

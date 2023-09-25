@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<div layout:fragment="content">
+
+    <div class="container mt-3">
+        <h2>내 장바구니 보기</h2>
+
+        <br>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>상품명</th>
+                <th>개당 가격</th>
+                <th>개수</th>
+                <th>가격</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="cartItem:${cartItemList}">
+
+                <tr>
+                    <td th:text="${cartItem.itemResponseDto.name}"></td>
+                    <td th:text="${cartItem.itemResponseDto.price}"></td>
+                    <td th:text="${cartItem.count}"></td>
+                    <td th:text="${cartItem.itemResponseDto.price*cartItem.count}"></td>
+                    <td><button th:cartItemId="${cartItem.id}" type="button" class="btn btn-danger" name="cartItemDelete-btn">삭제</button></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+        <br>
+        <div class="mb-3">
+            <label for="orderPrice">총 주문 금액:</label>
+            <input type="text" class="form-control" id="orderPrice" th:value="${cart.price}" name="orderPrice" readonly>
+        </div>
+
+        <button type="button" class="btn btn-success">주문하기</button>
+    </div>
+</div>
+</html>

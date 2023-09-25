@@ -1,5 +1,6 @@
 package com.qkrtprjs.happyexercise.entitiy.cart;
 
+import com.qkrtprjs.happyexercise.dto.CartItemResponseDto;
 import com.qkrtprjs.happyexercise.entitiy.BaseTimeEntity;
 import com.qkrtprjs.happyexercise.entitiy.item.Item;
 import lombok.Builder;
@@ -31,5 +32,14 @@ public class CartItem extends BaseTimeEntity {
         this.count = count;
         this.cart = cart;
         this.item = item;
+    }
+
+    public static CartItemResponseDto toDto(CartItem cartItem) {
+        return CartItemResponseDto.builder()
+                .id(cartItem.getId())
+                .cartResponseDto(Cart.toDto(cartItem.getCart()))
+                .count(cartItem.getCount())
+                .itemResponseDto(Item.toDto(cartItem.getItem()))
+                .build();
     }
 }
