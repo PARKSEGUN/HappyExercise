@@ -1,5 +1,6 @@
-# HappyExercise
-HappyExercise
+# 내 생각을 구현해보는 프로젝트
+
+프로젝트 이름 : HappyExercise
 
 프레임워크
  - SpringBoot2.7.15
@@ -31,7 +32,6 @@ HappyExercise
 
 기능
  - 로그인 : 카카오, 구글, 네이버 로그인 API 사용
-
 
 ### 보완해야될 사항
 - 홈에서 상품 등록 버튼 오른쪽 위에 위치
