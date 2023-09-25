@@ -1,14 +1,15 @@
-# HappyExercise
-HappyExercise
+# 내 생각을 구현해보는 프로젝트
+
+프로젝트 이름 : HappyExercise
 
 프레임워크
- - SpringBoot2.7.15
+- SpringBoot2.7.15
 
 데이터베이스
- - mysql
+- mysql
 
 언어
- - java, html, css, javascript
+- java, html, css, javascript
 
 카멜표기법 (소 - 대)
 
@@ -17,20 +18,19 @@ HappyExercise
 관리자, 사용자, 판매자
 
 공통기능
- - 로그인, 쇼핑, 지도
+- 로그인, 쇼핑, 지도
 
 사용자
- - 물품 구매 및 장소 확인 예약
+- 물품 구매 및 장소 확인 예약
 
 판매자
- - 물품 판매 등록 및 사용장소 소개
+- 물품 판매 등록 및 사용장소 소개
 
 관리자
- - 판매자 등록 및 권한 설정
-
+- 판매자 등록 및 권한 설정
 
 기능
- - 로그인 : 카카오, 구글, 네이버 로그인 API 사용
+- 로그인 : 카카오, 구글, 네이버 로그인 API 사용
 
 
 ### 보완해야될 사항
