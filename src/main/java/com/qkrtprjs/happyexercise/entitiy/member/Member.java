@@ -1,5 +1,7 @@
-package com.qkrtprjs.happyexercise.member;
+package com.qkrtprjs.happyexercise.entitiy.member;
 
+import com.qkrtprjs.happyexercise.dto.MemberResponseDto;
+import com.qkrtprjs.happyexercise.entitiy.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,9 +41,25 @@ public class Member {
         this.role = role;
     }
 
+
+
     public Member update(String name, String picture) {
         this.name = name;
         this.picture = picture;
         return this;
     }
+
+    public static MemberResponseDto toDto(Member member) {
+        return MemberResponseDto.builder()
+                .id(member.getId())
+                .name(member.getName())
+                .email(member.getEmail())
+                .platform(member.getPlatform())
+                .picture(member.getPicture())
+                .role(member.getRole())
+                .createdDate(member.getCreatedDate())
+                .updatedDate(member.getUpdatedDate())
+                .build();
+    }
+
 }

@@ -2,8 +2,8 @@ package com.qkrtprjs.happyexercise.config.auth;
 
 import com.qkrtprjs.happyexercise.config.auth.dto.OAuthAttributes;
 import com.qkrtprjs.happyexercise.config.auth.dto.SessionMember;
-import com.qkrtprjs.happyexercise.member.Member;
-import com.qkrtprjs.happyexercise.member.MemberRepository;
+import com.qkrtprjs.happyexercise.entitiy.member.Member;
+import com.qkrtprjs.happyexercise.entitiy.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -15,7 +15,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.util.Collection;
 import java.util.Collections;
 
 @RequiredArgsConstructor

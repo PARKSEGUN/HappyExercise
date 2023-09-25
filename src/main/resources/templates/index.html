@@ -5,12 +5,28 @@
       layout:decorate="~{layout/default_layout}">
 
 <div layout:fragment="content">
-    <div th:if="${loginMember!=null}">
-        <h1>로그인 정보 : </h1>
-    <div th:text="${loginMember.platform}"></div>
-    <div th:text="${loginMember.picture}"></div>
-    <div th:text="${loginMember.email}"></div>
-    <div th:text="${loginMember.name}"></div>
+    <div class="container mt-3">
+        <button type="button" class="btn btn-primary" onclick="location.href='/save/item'">상품 등록</button>
+        <br>
+        <br>
+
+        <h2>상품</h2>
+        <br>
+        <th:block th:each="item:${itemList}">
+            <div class="card" style="width:400px">
+                <a th:href="@{|/item/${item.id}|}">
+                    <img class="card-img-top" th:src="${item.imgPath}"
+                         alt="Card image" style="width:100%">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title" name="name" th:text="${item.name}"></h4>
+                    <div class="card-text" name="price" th:text="${item.price}"></div>
+                    <br>
+                    <a th:href="@{|/item/${item.id}|}" class="btn btn-primary">자세히보기</a>
+                </div>
+            </div>
+            <br>
+        </th:block>
     </div>
 </div>
 </html>

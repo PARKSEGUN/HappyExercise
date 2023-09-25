@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<div layout:fragment="content">
+
+  <div class="container mt-3">
+    <h2>상품 수정</h2>
+
+    <form th:action="@{|/api/item/${item.id}|}" th:method="put" enctype="multipart/form-data" id="update-item-form">
+      <input type="hidden" name="id" th:value="${item.id}">
+      <div class="mb-3 mt-3">
+        <label for="name">상품명:</label>
+        <input type="text" class="form-control" id="name" th:value="${item.name}" name="name">
+      </div>
+
+      <div class="mb-3">
+        <label for="detail">상품 설명:</label>
+        <input type="text" class="form-control" id="detail" th:value="${item.detail}" name="detail">
+      </div>
+      <div class="mb-3">
+        <label for="price">가격:</label>
+        <input type="number" class="form-control" id="price" th:value="${item.price}" name="price">
+      </div>
+      <div class="mb-3">
+        <label for="stock">재고:</label>
+        <input type="number" class="form-control" id="stock" th:value="${item.stock}" name="stock">
+      </div>
+      <div class="mb-3">
+        <label for="status">상태:</label>
+        <input type="text" class="form-control" id="status" th:value="${item.status}" name="status">
+      </div>
+      <div class="mb-3">
+        <label for="img">현재 사진:</label>
+        <br>
+        <img th:src="${item.imgPath}"  class="form" width="304" height="236" >
+      </div>
+      <div class="mb-3">
+        <label for="img">수정 할 사진:</label>
+        <input type="file" class="form-control" id="img" placeholder="사진을 첨부해주세요..." name="img"
+               multiple="multiple">
+      </div>
+      <button type="button" class="btn btn-primary" id="update-item-btn">수정 완료</button>
+    </form>
+  </div>
+</div>
+</html>

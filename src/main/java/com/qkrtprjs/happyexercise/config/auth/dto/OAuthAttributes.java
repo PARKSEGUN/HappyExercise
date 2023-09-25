@@ -1,12 +1,10 @@
 package com.qkrtprjs.happyexercise.config.auth.dto;
 
-import com.qkrtprjs.happyexercise.member.Member;
-import com.qkrtprjs.happyexercise.member.Role;
+import com.qkrtprjs.happyexercise.entitiy.member.Member;
+import com.qkrtprjs.happyexercise.entitiy.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.apache.catalina.User;
 
 import java.util.Map;
 

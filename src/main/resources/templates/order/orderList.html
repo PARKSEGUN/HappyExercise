@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<div layout:fragment="content">
+
+    <div class="container mt-3">
+        <h2>구매 내역</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>주문 번호</th>
+                <th>구매 날짜</th>
+                <th>주문 가격</th>
+                <th>주문 상태</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="order:${orderList}">
+                <th:block th:each="orderItem:${order.orderItemResponseDtoList}">
+                    <tr>
+                        <td th:text="${order.id}"></td>
+                        <td th:text="${order.date}"></td>
+                        <td th:text="${order.price}"></td>
+                        <td th:text="${order.status}"></td>
+                        <td>
+                            <button th:id="${order.id}" type="button" class="btn btn-primary" name="orderDetail-btn">
+                                상세보기
+                            </button>
+                        </td>
+                    </tr>
+                </th:block>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</html>

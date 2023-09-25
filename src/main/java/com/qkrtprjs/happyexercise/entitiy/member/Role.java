@@ -1,4 +1,4 @@
-package com.qkrtprjs.happyexercise.member;
+package com.qkrtprjs.happyexercise.entitiy.member;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

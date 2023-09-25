@@ -2,7 +2,7 @@
 <html lang="en">
 <div th:fragment="headerFragment"
      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <div class="p-5 bg-warning text-white text-center">
+    <div class="p-5 bg-secondary text-white text-center">
         <h1>Welcome To HappyExercise</h1>
         <p>쉽고 편하게 운동해보자~</p>
     </div>
@@ -27,6 +27,15 @@
                 <li  class="nav-item">
                     <a class="nav-link" href="/logout">로그아웃</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav justify-content-end" sec:authorize="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" href="/cartDetail">장바구니</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orderList">구매내역</a>
+                </li>
+
             </ul>
         </div>
     </nav>

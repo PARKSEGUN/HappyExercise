@@ -3,9 +3,9 @@ package com.qkrtprjs.happyexercise.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qkrtprjs.happyexercise.dto.MemberSaveRequestDto;
-import com.qkrtprjs.happyexercise.member.Member;
-import com.qkrtprjs.happyexercise.member.MemberRepository;
-import com.qkrtprjs.happyexercise.member.Role;
+import com.qkrtprjs.happyexercise.entitiy.member.Member;
+import com.qkrtprjs.happyexercise.entitiy.member.MemberRepository;
+import com.qkrtprjs.happyexercise.entitiy.member.Role;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.xmlunit.util.Mapper;
 
 import java.util.List;
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<div layout:fragment="content">
+
+    <div class="container mt-3">
+        <h2>주문 자세히 보기</h2>
+        <button  type="button" th:orderId="${order.id}" class="btn btn-danger" id="delete-order-btn" >삭제</button>
+
+        <div class="mb-3 mt-3">
+            <label for="id">주문번호:</label>
+            <input type="text" class="form-control" id="id" th:value="${order.id}" name="id" readonly>
+        </div>
+        <br>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>상품명</th>
+                <th>개당 가격</th>
+                <th>구매 개수</th>
+                <th>구매 가격</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="orderItem:${order.orderItemResponseDtoList}">
+                <tr>
+                    <td th:text="${orderItem.itemResponseDto.name}"></td>
+                    <td th:text="${orderItem.itemResponseDto.price}"></td>
+                    <td th:text="${orderItem.count}"></td>
+                    <td th:text="${orderItem.price}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+        <br>
+        <div class="mb-3">
+            <label for="orderPrice">주문 금액:</label>
+            <input type="text" class="form-control" id="orderPrice" th:value="${order.price}" name="orderPrice" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="date">주문 날짜:</label>
+            <input type="text" class="form-control" id="date" th:value="${order.date}" name="date" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="status">주문 상황:</label>
+            <input type="text" class="form-control" id="status" th:value="${order.status}" name="status" readonly>
+        </div>
+    </div>
+</div>
+</html>
