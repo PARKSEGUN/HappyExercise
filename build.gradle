@@ -16,12 +16,18 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
-
-repositories {
-	mavenCentral()
+allprojects {
+	repositories {
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
+	}
 }
 
+
+
+
 dependencies {
+	implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'	//IamPort 라이브러리 사용을 위한
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
