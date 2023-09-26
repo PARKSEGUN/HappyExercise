@@ -38,7 +38,7 @@ let order = {
             data: JSON.stringify(data)
         }).done(function () {
             alert("주문이 완료되었습니다");
-            location.href = '/';
+            location.href = '/orderList';
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });

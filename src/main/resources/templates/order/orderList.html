@@ -20,19 +20,17 @@
             </thead>
             <tbody>
             <th:block th:each="order:${orderList}">
-                <th:block th:each="orderItem:${order.orderItemResponseDtoList}">
-                    <tr>
-                        <td th:text="${order.id}"></td>
-                        <td th:text="${order.date}"></td>
-                        <td th:text="${order.price}"></td>
-                        <td th:text="${order.status}"></td>
-                        <td>
-                            <button th:id="${order.id}" type="button" class="btn btn-primary" name="orderDetail-btn">
-                                상세보기
-                            </button>
-                        </td>
-                    </tr>
-                </th:block>
+                <tr>
+                    <td th:text="${order.id}"></td>
+                    <td th:text="${order.date}"></td>
+                    <td th:text="${order.price}"></td>
+                    <td th:text="${order.status}"></td>
+                    <td>
+                        <button th:id="${order.id}" type="button" class="btn btn-primary" name="orderDetail-btn">
+                            상세보기
+                        </button>
+                    </td>
+                </tr>
             </th:block>
             </tbody>
         </table>
