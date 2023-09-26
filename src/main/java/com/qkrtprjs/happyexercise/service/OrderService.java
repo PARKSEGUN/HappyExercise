@@ -1,5 +1,6 @@
 package com.qkrtprjs.happyexercise.service;
 
+import com.qkrtprjs.happyexercise.config.auth.dto.SessionMember;
 import com.qkrtprjs.happyexercise.dto.*;
 import com.qkrtprjs.happyexercise.entitiy.item.Item;
 import com.qkrtprjs.happyexercise.entitiy.item.ItemRepository;
@@ -85,4 +86,27 @@ public class OrderService {
         orderItemRepository.deleteByOrder(order);
         orderRepository.delete(order);
     }
+
+    @Transactional
+    public Long saveFromCart(List<CartItemResponseDto> cartItemResponseDtoList,int orderPrice, SessionMember sessionMember) {
+        Member member = memberRepository.findByEmail(sessionMember.getEmail()).orElseThrow(() -> new IllegalArgumentException("해당 이메일은 존재하지않습니다!"));
+        Order order = orderRepository.save(Order.builder()
+                .member(member)
+                .price(orderPrice)
+                .status("주문완료")
+                .date(LocalDateTime.now())
+                .build());
+        for (CartItemResponseDto cartItemResponseDto : cartItemResponseDtoList) {
+            Item item = itemRepository.findById(cartItemResponseDto.getItemResponseDto().getId()).orElseThrow(() -> new IllegalArgumentException("해당 아이디는 존재하지않습니다!"));
+            orderItemRepository.save(OrderItem.builder()
+                    .item(item)
+                    .order(order)
+                    .count(cartItemResponseDto.getCount())
+                    .price(item.getPrice() * cartItemResponseDto.getCount())
+                    .build());
+        }
+        return order.getId();
+    }
+
+
 }

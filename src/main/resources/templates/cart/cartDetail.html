@@ -39,7 +39,10 @@
             <input type="text" class="form-control" id="orderPrice" th:value="${cart.price}" name="orderPrice" readonly>
         </div>
 
-        <button type="button" class="btn btn-success">주문하기</button>
+        <button type="button" class="btn btn-success" id="orderFromCart-btn">주문하기</button>
     </div>
+    <script th:inline="javascript">
+        let cartItemList = [[${cartItemList}]];
+    </script>
 </div>
 </html>
