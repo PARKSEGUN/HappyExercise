@@ -45,7 +45,7 @@ let cart={
     deleteCartItem: function (id) {
 
         $.ajax({
-            url: '/api/cartItem/'+id ,
+            url: '/api/cartItem/'+id  ,
             method: 'DELETE',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

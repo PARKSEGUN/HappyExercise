@@ -9,6 +9,7 @@ import com.qkrtprjs.happyexercise.entitiy.member.Member;
 import com.qkrtprjs.happyexercise.entitiy.member.MemberRepository;
 import com.qkrtprjs.happyexercise.service.CartItemService;
 import com.qkrtprjs.happyexercise.service.CartService;
+import com.siot.IamportRestClient.response.Payment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

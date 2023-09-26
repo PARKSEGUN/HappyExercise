@@ -52,7 +52,8 @@
                 <div class="mb-3">
                     <form action="/api/order" method="post"></form>
                     <label for="order-count">개수:</label>
-                    <input type="number" class="form-control" id="order-count" placeholder="구매하실 개수를 입력해주세요" name="count">
+                    <input type="number" class="form-control" id="order-count" placeholder="구매하실 개수를 입력해주세요"
+                           name="count">
                     <br>
                     <br>
                     <h4 id="order-price">가격 : </h4>
@@ -66,5 +67,69 @@
     <script th:inline="javascript">
         let itemForRequest = [[${item}]];
     </script>
+
+
+    <script
+            type="text/javascript"
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+
+    <script
+            type="text/javascript"
+            src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
+    ></script>
+    <script>
+        var IMP = window.IMP;
+        IMP.init("imp01778154");
+
+        function requestPay() {
+            IMP.request_pay(
+                {
+                    pg: "html5_inicis",		//KG이니시스 pg파라미터 값
+                    pay_method: "card",		//결제 방법
+                    merchant_uid: "1234574",//주문번호
+                    name: "테스트",		//상품 명
+                    amount: 200,			//금액
+                    buyer_email: "qkrtprjs@gmail.com",
+                    buyer_name: "박세건",
+                    buyer_tel: "010-4242-4242",
+                    //buyer_addr: "서울특별시",
+                    //buyer_postcode: "00000"
+                },
+                function (rsp) {
+                    //결제완료후 후속 검증 실행(주문금액과 일치하는지 확인)
+                    //console.log(rsp);   //결제 금액이 들어있음
+                    if (rsp.success) {
+                        //서버 검증 요청 부분
+                        let data = {
+                            imp_uid: rsp.imp_uid,            // 결제 고유번호
+                            merchant_uid: rsp.merchant_uid,   // 주문번호
+                            amount: rsp.paid_amount
+                        }
+                        $.ajax({
+                            url: '/payment/verification',
+                            method: 'POST',
+                            dataType: 'json',
+                            contentType: 'application/json; charset=utf-8',
+                            data: JSON.stringify(data)
+                        }).done(function (data) {
+                           // console.log(data);//주문 금액이 들어있음 	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+                            if (rsp.paid_amount == data.response.amount) {
+                                alert("결제 및 결제검증완료");
+                            } else {
+                                alert("결제 실패");
+                            }
+                        });
+
+                    }
+                    //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
+                    else {
+                        alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+                    }
+                }
+            );
+        }
+    </script>
+    <button onclick="requestPay()">결제하기</button>
 </div>
 </html>
