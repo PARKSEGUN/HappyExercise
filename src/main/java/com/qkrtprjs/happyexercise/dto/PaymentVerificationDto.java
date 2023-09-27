@@ -15,7 +15,10 @@ public class PaymentVerificationDto {
     private String amount;
 
     @Builder
-    public PaymentVerificationDto(String imp_uid) {
+
+    public PaymentVerificationDto(String imp_uid, String merchant_uid, String amount) {
         this.imp_uid = imp_uid;
+        this.merchant_uid = merchant_uid;
+        this.amount = amount;
     }
 }
